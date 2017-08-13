@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>CatApps</title>
+
+	<!-- Silakan beri favicon di bagian ini (opsional) -->
+        <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+
+	<!-- Jangan dirubah, jika download melalui npm berhasil maka file bootstrap.css akan otomatis bisa digunakan -->
+<!--	<link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">-->
+    
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Jangan dirubah, jika download melalui npm berhasil maka file sweetalert2.css akan otomatis bisa digunakan -->
+<!--	<link href="node_modules/sweetalert2/dist/sweetalert2.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+	<!-- Buatlah folder dengan nama css yg berisikan file app.css untuk custom styling sesuai dengan kebutuhan dan sekreatif mungkin -->
+	<link href="css/app.css" rel="stylesheet">
+    <style>
+        .sub-container{
+            margin: auto;
+            max-width: 800px;
+        }
+        
+        .hidden{
+            
+        }
+        
+        .navbar {
+	       margin-bottom: 20px;
+	       background-color: #fff;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+	<!-- Silakan buat element-element HTML di dalam container root element sesuai dengan docs soal test -->
+	<div id="root" class="container">
+        
+		<nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#" class="navbar-brand" @click="showHome">Home</a>
+                    <a href="#" class="navbar-brand" @click="showCats">My Cats</a>
+                </div>
+            </div>
+        </nav>
+        
+        <div :class="homevis" id="homepage">
+            <h1>Selamat datang, silahkan isi data diri anda.</h1>
+            <form v-on:success="">
+                <div class="form-group">
+                    <label for="name">Nama</label>
+                    <input type="text" class="form-control" id="name" v-model="name2" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" v-model="email2" required>
+                </div>
+                <button class="btn btn-default" @click="showSuccess">Submit</button>
+            </form>
+            
+        </div>
+        
+        <hr>
+        
+        <div :class="catvis" id="catpage" >
+            <div class="row">
+                <div class="col-sm-4">
+                    <img src="img/cat1.jpeg" class="img-responsive" @click="callCat1">
+                    <h2 id="cat1">Rico</h2>
+                </div>
+                <div class="col-sm-4">
+                    <img src="img/cat2.jpg" class="img-responsive" @click="callCat2">
+                    <h2 id="cat2">Celi</h2>
+                </div>
+                <div class="col-sm-4">
+                    <img src="img/cat3.jpeg" class="img-responsive" @click="callCat3">
+                    <h2 id="cat3">Onet</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <img src="img/cat4.jpeg" class="img-responsive" @click="callCat4">
+                    <h2 id="cat4">Cipu</h2>
+                </div>
+                <div class="col-sm-4">
+                    <img src="img/cat5.jpeg" class="img-responsive" @click="callCat5">
+                    <h2 id="cat5">Lilit</h2>
+                </div>
+            </div>
+        </div>
+	</div>
+    
+    
+	<!-- Jangan dirubah, jika download melalui npm berhasil maka file vue.js akan otomatis bisa digunakan -->
+<!--	<script src="node_modules/vue/dist/vue.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.min.js"></script>
+    
+	<!-- Jangan dirubah, jika download melalui npm berhasil maka file sweetalert2.js akan otomatis bisa digunakan -->
+<!--	<script src="node_modules/sweetalert2/dist/sweetalert2.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+	<!-- Buatlah folder dengan nama js yg berisikan file app.js untuk custom javascript menggunakan VueJS sesuai dengan docs soal test -->
+	<script src="js/app.js" rel="stylesheet"></script>
+    
+    <script>
+        
+        new Vue({
+            el : '#root',
+            
+            data : {
+                name2:'',
+                email2: '',
+                
+                homevis:'sub-container',
+                catvis:'hidden',
+                
+                cat1
+            }, 
+            
+            methods: {
+                showSuccess(){
+                    swal(
+                      'Terimakasih',
+                      'Nama : ' +this.name2+ ' Email : ' +this.email2,
+                      'success'
+                    )
+                },   
+                showHome(){
+                    this.homevis = 'sub-container';
+                    this.catvis = 'hidden';
+                },
+                showCats(){
+                    this.homevis = 'hidden';
+                    this.catvis = 'sub-container';
+                },
+                
+                callCat1(){ swal('Halo!','Kucing ini bernama Rico','info')},
+                callCat2(){ swal('Halo!','Kucing ini bernama Celi','info')},
+                callCat3(){ swal('Halo!','Kucing ini bernama Onet','info')},
+                callCat4(){ swal('Halo!','Kucing ini bernama Cipu','info')},
+                callCat5(){ swal('Halo!','Kucing ini bernama Lilit','info')},
+            },
+            
+        })
+        
+    </script>
+</body>
+
+</html>
